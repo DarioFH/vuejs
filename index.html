@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/estilo.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+        <div class="container">
+            
+            <!-- Form Adicionar -->
+            <div class="row">
+                
+                <div class="col-md-5 center jumbotron text-center">
+                    <h3>Lista</h3>
+                    <div class="form-row mt-4">
+                        <label for="">Nome</label>
+                        <input type="text" v-model="nomeInput" class="form-control">
+                    </div>
+                    
+                    <div class="form-row mt-4">
+                        <label for="">Telefone</label>
+                        <input type="text" v-model="telefoneInput" class="form-control">
+                    </div>
+                    
+                    <div class="form-row mt-4">
+                        <button @click="add" class="btn btn-success btn-lg">Adicionar</button>
+                    </div>
+                </div>
+                
+            </div> 
+            
+            
+            <!-- Tabela de Registros -->
+            <div v-if="lista.length > 0">
+                <div class="row">
+                    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                
+                                <th scope="col">Nome</th>
+                                <th scope="col">Telefone</th>
+                                <th scope="col">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(registro, index) in lista">
+
+                                <th>{{registro.nome}}</th>
+                                <th>{{registro.telefone}}</th>
+                                
+                                <td>
+
+                                    <button type="button" @click="showEdit(index)" :edit-id="index" class="btn btn-primary" data-toggle="modal" data-target="#modalEdit">
+                                        Editar
+                                    </button>
+
+                                    <button @click="del(index)" class="btn btn-primary">Excluir</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    
+                </div>
+            </div>
+            
+                      
+            
+            <!-- Modal Editar -->
+            <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="modalEdit" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modalEdit">Editar Registro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+                
+                            <div class="col-md-10 center text-center">
+                                <h3>Editar</h3>
+                                <div class="form-row mt-4">
+                                    <label for="">Nome</label>
+                                    <input type="text" v-model="editNomeInput" class="form-control">
+                                </div>
+                               
+                                <div class="form-row mt-4">
+                                    <label for="">Telefone</label>
+                                    <input type="text" v-model="editTelefoneInput" class="form-control">
+                                </div>
+
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" ref="closeModal" data-dismiss="modal">Close</button>
+                    <button type="button" @click="edit" class="btn btn-primary">Salvar Alterações</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            
+        </div>
+       
+        
+    </div> <!-- fim do app-->
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="js/script.js"></script>
+    </body>
+    </html>
